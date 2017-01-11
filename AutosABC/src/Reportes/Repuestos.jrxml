@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Repuestos" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="637b8e96-71ca-43ad-addc-92a6377681d9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_sede" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT id_repuesto, descripcion, marca, proveedor, cantidad, nombre AS sede_nombre FROM repuesto
+	NATURAL JOIN sede
+	WHERE id_sede = $P{id_sede}
+ORDER BY id_repuesto]]>
+	</queryString>
+	<field name="id_repuesto" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="marca" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="sede_nombre" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-1" y="0" width="556" height="72" backcolor="#006699" uuid="9227f918-b442-45c9-a856-c609b14323da"/>
+				<staticText>
+					<reportElement x="20" y="14" width="152" height="23" forecolor="#FFFFFF" uuid="dcb72a8d-3550-4904-9158-9e6adf66b53a"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Autos ABC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="278" y="14" width="169" height="20" forecolor="#FFFFFF" uuid="3caf5a3e-902a-4120-bea1-f72919f06b4d"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Repuestos en inventario]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement key="" x="20" y="37" width="152" height="23" forecolor="#FFFFFF" uuid="b65917e8-28cd-4a32-9f5b-9c3679b32d9b"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sede_nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-1" y="20" width="556" height="1" forecolor="#666666" uuid="f89c4c1d-21e9-4fe7-9d40-b1c0f1a23aa7"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3be5c782-82e4-40b4-9f74-7059b62d6a5d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="77" y="0" width="157" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9a7e9918-9bc8-4cfd-8c2e-7698c835516a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="326" y="0" width="137" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3c034fa0-4e2f-4b1f-9a29-07e3cff4a83f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="463" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3e22cee7-0fe9-441d-b70f-80559b417728"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="234" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e6bb8c3e-20ab-4c5e-9f27-d249dc6210b7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="448e27fc-2bd7-4a94-ac92-12a6adb45a4f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="77" height="20" uuid="472a3ee0-96a0-4a79-b768-a2e78277edb9"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_repuesto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="77" y="0" width="157" height="20" uuid="b5cc91e6-5298-40bc-a12a-be856990f79f"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="326" y="0" width="137" height="20" uuid="a1b458dd-c15a-4f33-9778-ea0b9f96e42e"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="463" y="0" width="92" height="20" uuid="87b2d45a-d616-4542-b70d-94b7d8d3036f"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="92" height="20" uuid="5ce9389a-72ff-44d8-9857-76edeed5c26c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="def5e52b-b224-4628-a7a4-ba277e2424b4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7c54efaf-e8db-4bd6-8fe5-4c45f7a01271"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="cc6e265c-0f52-4c65-92ff-7746893de870"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="553" height="50" backcolor="#006699" uuid="98b46696-f253-4bb2-97e3-9d054380b79b"/>
+				<staticText>
+					<reportElement x="0" y="2" width="553" height="48" forecolor="#FFFFFF" uuid="6d4fa50c-3937-4614-a623-801487e1a600"/>
+					<textElement textAlignment="Center">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No hay repuestos en inventario]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cotizaciones" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a1043e1-a34a-4c1a-a5f5-b69bd38175c4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.util.Date"/>
+	<parameter name="fecha2" class="java.util.Date"/>
+	<parameter name="id_sede" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Diego\\Documents\\NetBeansProjects\\AutosABC\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT cotizacion.*, nombre AS sede_nombre
+	FROM cotizacion
+	NATURAL JOIN sede
+	WHERE id_sede = $P{id_sede} AND fecha BETWEEN $P{fecha1} AND $P{fecha2}
+ORDER BY id_cotizacion]]>
+	</queryString>
+	<field name="id_cotizacion" class="java.lang.Integer"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="cedula_cliente" class="java.lang.String"/>
+	<field name="valor" class="java.lang.Float"/>
+	<field name="id_vendedor" class="java.lang.String"/>
+	<field name="id_sede" class="java.lang.String"/>
+	<field name="forma_pago" class="java.lang.String"/>
+	<field name="cuota_inicial" class="java.lang.Float"/>
+	<field name="cuota" class="java.lang.Float"/>
+	<field name="numero_cuotas" class="java.lang.Integer"/>
+	<field name="sede_nombre" class="java.lang.String"/>
+	<group name="CotizacionId">
+		<groupExpression><![CDATA[$F{id_cotizacion}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<staticText>
+					<reportElement mode="Opaque" x="276" y="0" width="279" height="25" forecolor="#006699" backcolor="#E6E6E6" uuid="b559c233-88a6-43cc-83e7-54863b28a5b3"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="276" height="25" forecolor="#006699" backcolor="#E6E6E6" uuid="d2975d2f-cb67-4053-8d46-bed13e7ec150"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ID Cotización]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="25" width="276" height="25" uuid="960e5e15-0b13-48cd-bdba-534e81dd7df0"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_cotizacion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement x="276" y="25" width="279" height="25" uuid="cbdaabce-f08a-4ab3-b46d-3b008245442c"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="29">
+				<staticText>
+					<reportElement mode="Transparent" x="-1" y="0" width="556" height="25" forecolor="#006699" backcolor="#FFFFFF" uuid="37e8311b-d1f6-4185-8d1a-c5e3854b0199"/>
+					<textElement textAlignment="Center">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[***]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="556" height="72" backcolor="#006699" uuid="1759ca0c-11b2-4642-8c06-f113a88f4415"/>
+				<staticText>
+					<reportElement x="20" y="14" width="152" height="23" forecolor="#FFFFFF" uuid="8b817b11-aa59-4633-853a-d6bc5e8bd53b"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Autos ABC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="14" width="180" height="20" forecolor="#FFFFFF" uuid="15eddb5c-89b7-41b2-8ed4-f6edd4b18ada"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Cotizaciones desde]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="1ba44172-f571-4dff-b119-d879ea6576b0"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[hasta]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement key="" x="431" y="14" width="100" height="20" forecolor="#FFFFFF" uuid="465ef289-7afc-45de-82f5-6e37c6b23aca"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="431" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="fd147dad-c276-4f06-86d1-db35e3d40c93"/>
+					<textElement textAlignment="Center">
+						<font size="14" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement key="" x="20" y="37" width="153" height="23" forecolor="#FFFFFF" uuid="797ae98c-4ff9-415a-829c-cb91dc2d5102"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sede_nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5"/>
+	</pageHeader>
+	<detail>
+		<band height="182">
+			<staticText>
+				<reportElement mode="Opaque" x="83" y="0" width="107" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="9f6f37c1-821d-467c-a76a-213e2bc4e149"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Vendedor]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="83" y="20" width="107" height="20" uuid="68698023-a085-4b6a-bd3f-23a43d39343e"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_vendedor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="353" y="21" width="125" height="20" uuid="dd030581-8cb3-46f8-bce6-ff99a8770b81"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedula_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="353" y="1" width="125" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="eb8d7bbd-9eac-4d5a-a442-77f3918ddccf"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="41" width="120" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="9929978d-82ee-4e9c-a890-2b6d0228b3f8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="121" y="41" width="153" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="d4ba67a1-5918-475f-96a8-52abfe3c7f4c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de Pago]]></text>
+			</staticText>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="121" y="61" width="153" height="20" uuid="bfe9f249-f4a5-46d0-b4e9-47e3c398aa53"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{forma_pago}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="368" y="61" width="94" height="20" uuid="787311c9-a333-448e-9342-79c8cd2dd55a"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="41" width="94" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="6bc7be7d-b9a0-4880-93a7-e20ff71dde0a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Cuotas]]></text>
+			</staticText>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="274" y="61" width="94" height="20" uuid="1a4b0512-3ac7-40d0-93c5-308401f09d04"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuota_inicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="274" y="41" width="94" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="7edf90a9-7379-4483-b08b-3103de50ea35"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuota Inicial]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement x="1" y="61" width="120" height="20" uuid="77a1e30d-1667-48ab-aa98-0557a8d786da"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="462" y="61" width="94" height="20" uuid="877fed3e-eff3-425b-a1b4-af2ddbcaa85d"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_cuotas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="462" y="41" width="94" height="20" isPrintInFirstWholeBand="true" forecolor="#006699" backcolor="#E6E6E6" uuid="24a87137-dc12-4c7f-b2fb-b8e428e017ea"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuotas #]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="81" width="553" height="1" forecolor="#6666FF" uuid="7c47ede8-fef4-454e-93b3-2f6e78600dc4"/>
+			</line>
+			<subreport>
+				<reportElement x="3" y="81" width="552" height="100" uuid="bc9ba282-05a6-4b60-a6dd-4e485c4faeab"/>
+				<subreportParameter name="id_cotizacion">
+					<subreportParameterExpression><![CDATA[$F{id_cotizacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Cotizaciones_subreportCarros.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="d2fe970b-ce6a-4ad6-abe0-04c2dac34748"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="4bceea0d-63ea-4141-8eef-ecf9658cf17f"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="497cf693-a00f-411e-a180-2d345ba5f53d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="3" y="0" width="553" height="50" backcolor="#006699" uuid="393e27dd-6ac3-4637-91d5-a0313ba69325"/>
+				<staticText>
+					<reportElement x="0" y="2" width="553" height="48" forecolor="#FFFFFF" uuid="a35e15a9-d900-437b-8ffc-52dd70671eb3"/>
+					<textElement textAlignment="Center">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No hay cotizaciones en este periodo]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

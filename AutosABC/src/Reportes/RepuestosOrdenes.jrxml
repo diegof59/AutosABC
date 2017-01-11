@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RepuestosOrdenes" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fc12463-5f44-491c-ae19-cb1a981f3564">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.util.Date"/>
+	<parameter name="fecha2" class="java.util.Date"/>
+	<parameter name="id_sede" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT id_repuesto, repuesto.descripcion, id_orden, fecha, cantidad, id_jefe_taller, nombre AS sede_nombre
+	FROM repuestos_orden
+	NATURAL JOIN sede
+	NATURAL JOIN repuesto
+	WHERE id_sede = $P{id_sede} AND fecha BETWEEN $P{fecha1} AND $P{fecha2}
+ORDER BY id_orden]]>
+	</queryString>
+	<field name="id_repuesto" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="id_orden" class="java.lang.Integer"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="id_jefe_taller" class="java.lang.String"/>
+	<field name="sede_nombre" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="556" height="72" backcolor="#006699" uuid="54022db1-488f-4aed-8ade-3d91622bfa0b"/>
+				<staticText>
+					<reportElement x="20" y="14" width="152" height="23" forecolor="#FFFFFF" uuid="d7d6f2db-b079-4cee-a379-1fbd1f6fffca"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Autos ABC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="14" width="188" height="20" forecolor="#FFFFFF" uuid="059a7bb0-dcd3-44e8-a74f-d968ef638a35"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Ordenes de repuestos desde]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="e676011f-0089-4bc6-bb28-af81b14ebbe8"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[hasta]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement key="" x="431" y="14" width="100" height="20" forecolor="#FFFFFF" uuid="97724e41-24a3-49ed-91a2-de049eaf2368"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="431" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="a368e304-242a-46d0-926b-99e7f655ec4d"/>
+					<textElement textAlignment="Center">
+						<font size="14" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement key="" x="20" y="37" width="153" height="23" forecolor="#FFFFFF" uuid="c01ee9d9-3a36-4602-88d3-3863e74ed6ca"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sede_nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Opaque" x="71" y="0" width="89" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d32b916f-9615-4d3c-be01-b5877f8e89e8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Repuesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="71" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="28da94ce-7c0c-42e7-ad23-8318ceaabe81"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Orden]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="290" y="0" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="241a7135-024e-4cc2-a511-b49146753412"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="363" y="0" width="78" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cd7b3faf-5168-465e-b248-44f0914ca04d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="441" y="0" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9daff383-4cc9-4248-a94a-9789195f4332"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Responsable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="160" y="0" width="130" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="777b0d26-8b4f-436e-b0f9-334607092791"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="71" y="0" width="89" height="20" uuid="ee8e0867-5e65-407d-a1b9-519c86ae43df"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_repuesto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="71" height="20" uuid="de24517f-1469-4147-bf36-db139dce3415"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_orden}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="false">
+				<reportElement x="290" y="0" width="73" height="20" uuid="e6c152ab-7c6a-4f74-b00a-a2af10dd6921"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="363" y="0" width="78" height="20" uuid="2653fb00-4b19-4554-988c-0be99c414c04"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="441" y="0" width="115" height="20" uuid="caa265d5-0b06-45d2-abcd-d7e632b2f1f6"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_jefe_taller}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-1" y="0" width="556" height="1" forecolor="#666666" uuid="d88a51b4-da63-4655-a011-d380c004e7ae"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="160" y="0" width="130" height="20" uuid="26b80548-6aa1-49f0-a309-f932e31f030d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="96a00c5b-a9db-479c-9804-6f47b75c7fbd"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="b665c42d-3330-4ab9-ad8e-80b0b85cff81"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="908a983f-6031-4a6a-aba0-4310e850e365"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="553" height="50" backcolor="#006699" uuid="279c3158-2a0d-40e5-b116-2115c8e6b245"/>
+				<staticText>
+					<reportElement x="0" y="2" width="553" height="48" forecolor="#FFFFFF" uuid="82411a12-2516-45e2-82d8-47e45edefa0f"/>
+					<textElement textAlignment="Center">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No hay ordenes de repuestos]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

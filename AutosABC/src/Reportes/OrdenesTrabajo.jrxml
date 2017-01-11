@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenesTrabajo" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f25b266a-8d5c-4cb6-9d03-b70559356ae9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.util.Date"/>
+	<parameter name="fecha2" class="java.util.Date"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\Diego\\Documents\\NetBeansProjects\\AutosABC\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_sede" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT id_orden, fecha_radicacion, descripcion, precio, id_jefe_taller, nombre AS sede_nombre
+	FROM orden_trabajo
+	NATURAL JOIN sede
+	WHERE id_sede = $P{id_sede} AND fecha_radicacion BETWEEN $P{fecha1} AND $P{fecha2}
+ORDER BY id_orden]]>
+	</queryString>
+	<field name="id_orden" class="java.lang.Integer"/>
+	<field name="fecha_radicacion" class="java.sql.Date"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="precio" class="java.lang.Float"/>
+	<field name="id_jefe_taller" class="java.lang.String"/>
+	<field name="sede_nombre" class="java.lang.String"/>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-1" y="0" width="556" height="72" backcolor="#006699" uuid="92ade7d5-187b-4bbc-85e6-922593923eb6"/>
+				<staticText>
+					<reportElement x="20" y="14" width="152" height="23" forecolor="#FFFFFF" uuid="a15fe58b-5adc-4eec-83fe-f13876ae8970"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Autos ABC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="14" width="180" height="20" forecolor="#FFFFFF" uuid="268669fe-708f-4a24-81a1-e0bc9c118a8d"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Ordenes de trabajo desde]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="4ab52a31-bf18-4825-91b1-838ddf72e3ef"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[hasta]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement key="" x="431" y="14" width="100" height="20" forecolor="#FFFFFF" uuid="92206760-c54c-4cbc-ac09-bdd6b6e0687f"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+					<reportElement x="431" y="37" width="100" height="20" forecolor="#FFFFFF" uuid="231bd3ee-df43-4d57-a734-f4fb0f9db26e"/>
+					<textElement textAlignment="Center">
+						<font size="14" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement key="" x="20" y="37" width="153" height="23" forecolor="#FFFFFF" uuid="a1e125a8-37cb-4843-b38e-52fe7555888e"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sede_nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="5"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" forecolor="#666666" uuid="fbf6c11d-0a30-42dc-bfdd-101e94e5111f"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="155" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a736b8ec-f2d5-4adb-882a-cdc282a99791"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="155" y="0" width="152" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bc3964a4-65a5-444e-91f6-d2ec1d80cd17"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Radicación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="307" y="0" width="123" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="933fa7a7-527f-4265-95bc-54a663445175"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="0" width="125" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bdbd830e-dc89-4807-84bb-2da151e1dc0c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Encargado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="149">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" forecolor="#6666FF" uuid="d938e72d-5a98-4d8b-8ab0-9c2392f6fa76"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="155" height="20" uuid="bec09d3b-1ade-4e18-add2-0760f4e3765f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_orden}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement x="155" y="0" width="152" height="20" uuid="4d43bbf2-dcfe-473d-8ac6-9df4138b534d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_radicacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="100" y="104" width="455" height="20" uuid="bc4225ae-4476-4aae-9603-47a2423cb5c8"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}.equals(null) ? "No descripción" : $F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00">
+				<reportElement x="307" y="0" width="123" height="20" uuid="56c74b34-5d50-470f-89d2-b80b34e1005a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="104" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="751a8a4c-5d71-487b-a9b3-1bc3c5fcca79"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="430" y="0" width="125" height="20" uuid="699199e9-25e5-4775-a7b6-6506185fde7c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_jefe_taller}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="20" width="553" height="1" forecolor="#6666FF" uuid="cf7ecfe3-d56a-463d-b425-7703adda0daa"/>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="2" y="124" width="553" height="25" forecolor="#006699" backcolor="#FFFFFF" uuid="5464443b-83d5-468a-80aa-d370805ce7b2"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[***]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-1" y="20" width="556" height="84" uuid="995b9a9a-67f0-4595-88dc-15f885cc3e37"/>
+				<subreportParameter name="id_orden">
+					<subreportParameterExpression><![CDATA[$F{id_orden}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OrdenesTrabajos_subreportCarro.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="4f8100a7-81f8-4348-9928-547405b9edc2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="1ea5a5b5-9968-49ea-8312-97adcf171657"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="fa35ab89-7234-48c2-ae68-b776168c600f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<noData>
+		<band height="50">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="553" height="50" backcolor="#006699" uuid="03d244c1-47fa-4c88-8756-e82f12afe9ad"/>
+				<staticText>
+					<reportElement x="0" y="2" width="553" height="48" forecolor="#FFFFFF" uuid="74daa703-d01e-4518-b322-748d8b0c49e9"/>
+					<textElement textAlignment="Center">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No hay ordenes de trabajo]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</noData>
+</jasperReport>

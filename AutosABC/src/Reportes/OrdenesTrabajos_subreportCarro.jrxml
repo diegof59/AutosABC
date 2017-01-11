@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdenesTrabajos_carros" language="groovy" pageWidth="555" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="85dab3a2-dd2b-4724-bd02-f260f071ce79">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_orden" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT placa, marca, referencia, modelo FROM orden_trabajo
+	WHERE id_orden = $P{id_orden}]]>
+	</queryString>
+	<field name="placa" class="java.lang.String"/>
+	<field name="marca" class="java.lang.String"/>
+	<field name="referencia" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<title>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="554" height="21" forecolor="#006699" backcolor="#E6E6E6" uuid="372cd59d-a2cc-492b-888d-e24d89558d48"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carros venta]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="126" y="0" width="138" height="21" forecolor="#006699" backcolor="#E6E6E6" uuid="d33f7446-365f-4965-ad4f-85b60ee705ff"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="0" width="190" height="21" forecolor="#006699" backcolor="#E6E6E6" uuid="a2f52e61-0935-4ea1-a59f-38029a9aac07"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="454" y="0" width="100" height="21" forecolor="#006699" backcolor="#E6E6E6" uuid="b75115e4-683e-4477-9bec-a5c8c25eeb77"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="125" height="21" forecolor="#006699" backcolor="#E6E6E6" uuid="fe6f00ef-1a74-4eb7-9888-2e5071f26fee"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Carro]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="125" height="20" uuid="95987d9e-3ebe-4350-a917-84909d21d61c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{placa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="138" height="20" uuid="a62326b8-1067-4a4e-9478-cf0c8b7059d2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="0" width="100" height="20" uuid="156e295c-ec39-4e1b-8ff6-8f9c27bb01ab"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="22" width="553" height="1" forecolor="#6666FF" uuid="5cb8d157-e2bf-46b6-8e70-69204649ba17"/>
+			</line>
+			<textField>
+				<reportElement x="264" y="0" width="190" height="20" uuid="6da6d2ab-0c12-4f84-b30a-46f2c5341cbb"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{referencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
